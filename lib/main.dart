@@ -1,3 +1,6 @@
+import 'dart:math';
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -157,56 +160,114 @@ void main() => runApp(MyApp());
 //   }
 // }
 //-> list and listview
+// class MyApp extends StatefulWidget {
+//   @override
+//   _MyAppState createState() => _MyAppState();
+// }
+
+// class _MyAppState extends State<MyApp> {
+//   List<Widget> widgets = [];
+//   int jml=5;
+//   _MyAppState(){
+//     for(int i=0;i<jml;i++){
+//       widgets.add(Text("data "+i.toString(),style: TextStyle(fontSize: 20)));
+//     }
+//   }
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       home: Scaffold(
+//         appBar: AppBar(
+//           title: Text("list and listview"),
+//         ),
+//         body: ListView(
+//           children: <Widget>[
+//             Row(
+//               mainAxisAlignment: MainAxisAlignment.spaceAround,
+//               children: <Widget>[
+//                 RaisedButton(
+//                   child: Text("tambah"),
+//                   onPressed: (){
+//                     setState(() {
+//                       widgets.add(Text("data "+jml.toString(),style: TextStyle(fontSize: 20),));
+//                       jml++;
+//                     });
+//                   },
+//                 ),
+//                 RaisedButton(
+//                   onPressed: (){
+//                     setState(() {
+//                       widgets.removeLast();
+//                       jml--;
+//                     });
+//                   },
+//                   child: Text("hapus"),
+//                 )
+//               ],
+//             ),
+//             Column(
+//               crossAxisAlignment: CrossAxisAlignment.start,
+//               children: widgets,
+//             )
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
+//-> Text Style
+// class MyApp extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       home: Scaffold(
+//         appBar: AppBar(
+//           title: Text("Text Style"),
+//         ),
+//         body: Center(
+//           child: Text(
+//             "hello",
+//             style: TextStyle(
+//                 fontFamily: "EastSeaDokdo",
+//                 fontSize: 50,
+//                 decoration: TextDecoration.overline,
+//                 decorationColor: Colors.lightBlue,
+//                 decorationStyle: TextDecorationStyle.dotted
+//             ),
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
+// ->Animate
 class MyApp extends StatefulWidget {
   @override
   _MyAppState createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
-  List<Widget> widgets = [];
-  int jml=5;
-  _MyAppState(){
-    for(int i=0;i<jml;i++){
-      widgets.add(Text("data "+i.toString(),style: TextStyle(fontSize: 20)));
-    }
-  }
+  Random rand = Random();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text("list and listview"),
+          title: Text("Animate"),
         ),
-        body: ListView(
-          children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
-                RaisedButton(
-                  child: Text("tambah"),
-                  onPressed: (){
-                    setState(() {
-                      widgets.add(Text("data "+jml.toString(),style: TextStyle(fontSize: 20),));
-                      jml++;
-                    });
-                  },
-                ),
-                RaisedButton(
-                  onPressed: (){
-                    setState(() {
-                      widgets.removeLast();  
-                      jml--;
-                    });                    
-                  },
-                  child: Text("hapus"),
-                )
-              ],
+        body: Center(
+          child: GestureDetector(
+            onTap: () {
+              setState(() {});
+            },
+            child: AnimatedContainer(
+              color: Color.fromARGB(
+                  255, rand.nextInt(256), rand.nextInt(256), rand.nextInt(256)),
+              duration: Duration(seconds: 1),
+              width: rand.nextInt(300) + 1.0,
+              height: rand.nextInt(300) + 1.0,
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: widgets,
-            )
-          ],
+          ),
         ),
       ),
     );
